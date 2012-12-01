@@ -1,0 +1,89 @@
+- whoami: 
+  - 
+  - i kinda know jasmine, nUnit, cucumber, specflow, but I'm not an expert
+  - i'm not a hardcore node user, but that doesn't matter.  TDD/BDD/ATDD is not
+  about the tech stack
+
+- audience:
+  - who knows jasmine/mocha/xUnit/cucumber/rspec/?
+
+- why test (why bother)?    
+  - it's not about the tests - it's about what the tests lead to
+    - posit: good unit testing practices result in good code. 
+    - why?  
+      - decomposition: if you're testing units, you're more likely to develop 
+      small, single purpose functions and modules. 
+      - the act of testing units of code requires you to 
+      abstract services used by the code under test.
+        - this leads to:
+          - at least: services that do one thing.
+          - usually: loose coupling amongst services.
+          - ideally: IoC/DI mechanisms that support 
+      - parsimony/thrift: extreme unwillingness to spend money or use resource
+        - if you can't test it, do you need it? (YAGNI)      
+  - side effects :
+    - documentation
+      - easy to read code is great... but...
+      good unit tests document the intent of the design
+    - reliability
+      - find unintended side effects
+      - support refactoring.  if you trust your test suite you can make
+      large changes with a higher certainty that you haven't broken anything
+      - detect bugs - what you might think would be the primary purpose for unit 
+      testing.
+- what should you test?
+  - test when you're not sure how to proceed
+  - test mission-critical code, even if you do know how to proceed
+  - test exposed methods of modules.
+- what you don't need to test:
+  - hackathon code
+  - someone else's code
+  - view-ish things: assume IE will always be the same amount of awesome.  Assume that
+  if a view breaks you'll notice.
+
+- examples:
+  - hello world of testing
+  - test runners
+
+- bibliography/linkage
+  - https://github.com/pivotal/jasmine/downloads
+  - http://pivotal.github.com/jasmine/
+  - Test-Driven Development by example- Kent Beck 
+  (http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
+  - http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+
+
+
+
+
+
+
+
+
+
+ideas:
+  - present using jasmine
+  - can I wire test runner up as a preso engine
+
+
+
+
+
+
+
+describe("this preso", function(){
+    
+
+    beforeEach(function(){
+        // some transition
+    });
+
+    afterEach(function(){
+        // exit transition
+    });
+
+    it("should have")
+
+});
+
+
