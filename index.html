@@ -1,8 +1,43 @@
 <html>
 <head>
-<title>testing</title>
+  <title>TDD with Jasmin</title>
+  
+  <link rel="stylesheet" type="text/css" href="slides.css">
+  <script type="text/javascript" src="jquery-min.js"></script>
+  <script type="text/javascript" src="slide_data.js"></script>
+  <script type="text/javascript" src="slides.js"></script>    
+  <script type="text/javascript">
+    $().ready(
+        function(){
+            var $slideDiv = $('#current_slide');
+            var slides = presentation.slides($slideDiv); // arrange    
+            slides.show(0);
+
+            $(document).on('click', function(){
+                slides.next();
+            });
+
+            $(document).on('keydown', function(k){                
+                switch(k.keyCode){
+                    case 37: // left arrow
+                        slides.previous();
+                        k.preventDefault();
+                        break;
+                    case 39: // right arrow
+                    case 32: // space bar
+                        slides.next();
+                        k.preventDefault();
+                        break;
+                }
+
+
+            });
+        }
+    );
+  </script>
+
 </head>
 <body>
-    <h1></h1>
+    <div id="current_slide"></div>        
 </body>
 </html>

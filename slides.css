@@ -1,23 +1,35 @@
+body {
+    background-color: #222;
+
+}
+
 #current_slide {
-    margin:0 auto;
-    /*margin-bottom: 600px;*/
+    margin:0 auto;    
     width:960px; 
-    height: 600px; 
-    position:relative;
-    background-color:white;
-    border: 1px black;
-    font-family: tahoma;
+    height: 600px;
+    position:relative;        
+    padding:10px;
+    color:#EEE;
+    font-family: 'Garamond'
 }
 
-#current_slide.title {
-
-
+#current_slide .title {        
+    font-weight: 900;
+    font-size:32pt;    
 }
 
-#current_slide.code {
-
+#current_slide .code {
+    white-space:pre;
+    background-color: #333;
+    color:#CCC;
+    font-family: 'Anonymous Pro';    
+    font-size: 18pt;
+    padding: 10px;
 }
 
-#current_slide.bullets {
+#current_slide .bullets {
+    list-style-type: 'disc';
+    font-weight: 600;
+    font-size: 24pt;
 
 }
