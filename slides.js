@@ -1,16 +1,18 @@
+var presentation = presentation || {};
 
-var presentation = {};
-presentation.slides = function(){
-    
-    var slides = [];
-    var currentSlide = 0;
+presentation.slides = function($displayArea){
+
+    var _current_slide = 0;
 
     var show = function(slideNumber) {
-        currentSlide = slideNumber;
+        _current_slide = slideNumber;
+        var slide = presentation.slide_data[_current_slide];
+        var title = slide.title || '';
+        $displayArea.text(title);
     };
 
     var getCurrentSlide = function() {
-        return currentSlide;
+        return _current_slide;
     };
 
     return {

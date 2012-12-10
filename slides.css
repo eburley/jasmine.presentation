@@ -1,0 +1,23 @@
+#current_slide {
+    margin:0 auto;
+    /*margin-bottom: 600px;*/
+    width:960px; 
+    height: 600px; 
+    position:relative;
+    background-color:white;
+    border: 1px black;
+    font-family: tahoma;
+}
+
+#current_slide.title {
+
+
+}
+
+#current_slide.code {
+
+}
+
+#current_slide.bullets {
+
+}

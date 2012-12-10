@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         }
     },
     watch:{
-        files:['index.html', 'slides.js', 'slides_spec.js', 'SpecRunner.html'],
+        files:['index.html', 'slides.js', 'slides_spec.js', 'SpecRunner.html', 'slides.css'],
         tasks:'reload'
     }
   });
