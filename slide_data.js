@@ -1,21 +1,39 @@
 var presentation = presentation || {};
 
 presentation.slide_data = [
+
 {
-    title: 'hello world of jasmine',
-    bullets: ['start with an expectation'],
+    big_title: 'TDD with Jasmine',
+    title: 'Eric Burley',
+    social: ['@eburley','eric@eburley.com']
+},
+{
+    title: 'Intro',
+    bullets: [
+        'whoami',
+        'why should we listen to you?',
+        'why should we care?'
+    ]
+},
+{
+    title: 'Hello Jasmine',
+    bullets: [
+        'start with an expectation',
+        'keep it simple...baby steps'
+    ],
     code:
 'describe("my slides", function(){\n'+
 '\n'+
 '   it("should have a way to go to a slide", function(){\n'+
 '      var slides = presentation.slides(); // arrange\n'+
 '      slides.show(1); // act\n'+
-'      expect(slides.getCurrentSlide()).toEqual(1); // assert\n'+
+'      <b>expect</b>(slides.getCurrentSlide()).toEqual(1); // assert\n'+
 '   });\n'+
 '}'
 },
 {
-    title: 'hello world of jasmine: satisfy the tests',
+    title: 'Hello Jasmine: satisfy the tests',
+    bullets: ['implement <em>just</em> enough to get it working'],
     code:
 'presentation.slides = function(){\n' +
 '\n' +
@@ -37,7 +55,7 @@ presentation.slide_data = [
 '};\n'
 },
 {
-    title: 'another test',
+    title: 'Wash, Rinse, Repeat...',
     code:
 'it("should show slide content", function() {\n' +
 '    var $slideDiv = $("#current_slide");\n' +
@@ -86,7 +104,18 @@ presentation.slide_data = [
 '    slides.show(0);\n' +
 '    expect($slideDiv.text()).toContain("hello world");\n' +
 '}); \n'
-}
+},
+{
+    title: 'Immediately!',
+    bullets: ['ddescribe','iit','xdescribe','xit']
+},
+{
+    title: 'Timing is everything',
+    bullets: ['lots of code is anynchronous',
+    'testing async code']
+
+},
+{title: 'Questions?'}
 
 
 

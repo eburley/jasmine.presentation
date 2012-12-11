@@ -13,9 +13,16 @@ body {
     font-family: 'Garamond'
 }
 
-#current_slide .title {        
+#current_slide .title, #current_slide .big_title{        
     font-weight: 900;
+    padding-top:40px;
     font-size:32pt;    
+    margin-bottom:32px;
+}
+
+#current_slide .big_title {
+    font-size: 48pt;
+    
 }
 
 #current_slide .code {
@@ -27,9 +34,20 @@ body {
     padding: 10px;
 }
 
-#current_slide .bullets {
+#current_slide ul.bullets {
+    margin-top:0px;
+}
+
+#current_slide .bullets {    
     list-style-type: 'disc';
     font-weight: 600;
     font-size: 24pt;
+
+}
+
+#current_slide .social {
+    list-style-type: none;
+    font-weight: 600;
+    font-size: 18pt;
 
 }
