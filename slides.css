@@ -20,10 +20,22 @@ body {
     margin-bottom:32px;
 }
 
-#current_slide .big_title {
-    font-size: 48pt;
-    
+#current_slide .big_title, #current_slide .hero{
+    font-size: 48pt;    
+    margin-bottom: 32px;
 }
+
+#current_slide .footer {
+    position: absolute;
+    top: 580px;
+    font-size:18pt;
+}
+
+#current_slide .prose {
+    font-size: 28pt;
+    margin-bottom: 32px;
+}
+
 
 #current_slide .code {
     white-space:pre;

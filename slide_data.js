@@ -19,13 +19,33 @@ presentation.slide_data = [
     title: 'TDD: its not about the tests',
     bullets: ['good TDD results in better code',
     'The tests are a side effect, not the end goal',
-    'the <em>act</em> of TDD leads to:']
+    'the <em>act</em> of TDD leads to...']
+},
+{
+    title: 'Better Code -- and here\'s why:',
+    bullets: [        
+    'you <em>should</em> get modules that do one thing',
+    'you <em>will probably</em> get loose coupling amongst services',
+    'you <em>might even</em> end up using IoC or DI mechanisms']
+},
+{
+    title: 'But the best part...',
+    hero: 'parsimony/thrift:<br />extreme unwillingness to spend money or use resources',
+    footer: 'if you can\'t test it, do you need it? (YAGNI)'
+},
+{
+    title: 'Side effects may include:',
+    bullets: [
+        'detect bugs',
+        'safer refactoring',
+        'documentation' ]
 },
 {
     title: 'Hello Jasmine',
     bullets: [
         'start with an expectation',
-        'keep it simple...baby steps'
+        'keep it simple - take small steps',
+        'arrange, act, assert'
     ],
     code:
 'describe("my slides", function(){\n'+
@@ -38,8 +58,19 @@ presentation.slide_data = [
 '}'
 },
 {
+    title: 'Great Expectations',
+    prose: 'expect and matchers are the <em>fluent</em> Swiss Army Knife of Jasmine',
+code:
+'expect(something).toBe();\n' +
+'expect(nothing).not.toBe();\n' +
+'expect(some_words).toContain("st.*f");\n' +
+'expect(someFunction).toBeDefined();\n' +
+'expect(boolean_values).toBeTruthy();\n'
+
+},
+{
     title: 'Hello Jasmine: satisfy the tests',
-    bullets: ['implement <em>just</em> enough to get it working'],
+    prose: 'implement <em>just</em> enough to get it working',
     code:
 'presentation.slides = function(){\n' +
 '\n' +
@@ -75,16 +106,17 @@ presentation.slide_data = [
     title: 'make it green',
     code:
 '...\n' +
-'    var show = function(slideNumber) {\n' +
-'        _current_slide = slideNumber;\n' +
-'        var slide = _slide_data[_current_slide];\n' +
-'        $displayArea.empty();\n' +
-'        for ( p in slide ) {\n' +
-'            if ( slide.hasOwnProperty(p) ) {\n' +
-'                $displayArea.append($("<div>").attr("class",p).text(slide[p]));\n' +
-'            }\n' +
-'        }        \n' +
-'    };\n' +
+'var show = function(slideNumber) {\n' +
+'    _current_slide = slideNumber;\n' +
+'    var slide = _slide_data[_current_slide];\n' +
+'    $displayArea.empty();\n' +
+'    for ( p in slide ) {\n' +
+'        if ( slide.hasOwnProperty(p) ) {\n' +
+'            $displayArea.append($("<div>").attr("class",p)\n' +
+'               .text(slide[p]));\n' +
+'        }\n' +
+'    }        \n' +
+'};\n' +
 '...\n'
 },
 {
