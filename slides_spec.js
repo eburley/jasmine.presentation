@@ -5,7 +5,7 @@ describe("my slides", function(){
         $slideDiv = $("#current_slide");
         slide_data = [
                         {title:"hello world",foo:"stuff"},
-                        {stuff:["one","two"]}
+                        {stuff:["one","two"], code:"function(){}//code"}
                      ];
         slides = presentation.slides($slideDiv, slide_data);
     });
@@ -33,6 +33,12 @@ describe("my slides", function(){
     it("should turn arrays into ul/li", function() {
         slides.show(1);
         expect($slideDiv.find("ul li").text()).toContain("one");
+    });
+
+
+    it("should syntax highlight code", function(){
+        slides.show(1);
+        expect($slideDiv.html()).toContain("comment");
     });
 
 });

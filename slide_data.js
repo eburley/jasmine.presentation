@@ -16,6 +16,12 @@ presentation.slide_data = [
     ]
 },
 {
+    title: 'TDD: its not about the tests',
+    bullets: ['good TDD results in better code',
+    'The tests are a side effect, not the end goal',
+    'the <em>act</em> of TDD leads to:']
+},
+{
     title: 'Hello Jasmine',
     bullets: [
         'start with an expectation',
@@ -27,7 +33,7 @@ presentation.slide_data = [
 '   it("should have a way to go to a slide", function(){\n'+
 '      var slides = presentation.slides(); // arrange\n'+
 '      slides.show(1); // act\n'+
-'      <b>expect</b>(slides.getCurrentSlide()).toEqual(1); // assert\n'+
+'      expect(slides.getCurrentSlide()).toEqual(1); // assert\n'+
 '   });\n'+
 '}'
 },
@@ -108,6 +114,10 @@ presentation.slide_data = [
 {
     title: 'Immediately!',
     bullets: ['ddescribe','iit','xdescribe','xit']
+},
+{
+    title: 'Spies: Like us?',
+    bullets: ['spys/mocks let you test only what you want']
 },
 {
     title: 'Timing is everything',

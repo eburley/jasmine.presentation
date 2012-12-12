@@ -1,9 +1,10 @@
 var presentation = presentation || {};
 
-presentation.slides = function($displayArea, the_slide_data){
+presentation.slides = function($displayArea, the_slide_data, the_rainbow){
 
     var _current_slide = 0;
     var _slide_data = the_slide_data || presentation.slide_data;
+    var _rainbow = the_rainbow || window.Rainbow || null;
 
     var show = function(slideNumber) {
         if(slideNumber < 0 || slideNumber >= _slide_data.length) {
@@ -23,7 +24,17 @@ presentation.slides = function($displayArea, the_slide_data){
                     $displayArea.append($ul);
                 }
                 else {
-                    $displayArea.append($('<div>').attr('class',p).append(slide[p]));
+                    var content = slide[p];                                        
+                    if ( p === 'code' && _rainbow) {
+                        _rainbow.color(content, 'javascript',
+                            function(highlighted_code) {                                
+                                $displayArea.append($('<pre>').attr('class',p).append(highlighted_code));
+                            });
+                    }
+                    else
+                    {
+                        $displayArea.append($('<div>').attr('class',p).append(content));
+                    }
                 }
             }
         }        
@@ -46,6 +57,7 @@ presentation.slides = function($displayArea, the_slide_data){
         next: next,
         previous: previous,
         getCurrentSlide: getCurrentSlide
+        
     };
 
 };
