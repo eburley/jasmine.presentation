@@ -5,7 +5,7 @@ presentation.slide_data = [
 {
     big_title: 'TDD with Jasmine',
     title: 'Eric Burley',
-    social: ['@eburley','eric@eburley.com']
+    social: ['twitter: @eburley','eric at eburley dot com']
 },
 {
     title: 'Intro',
@@ -39,6 +39,14 @@ presentation.slide_data = [
         'detect bugs',
         'safer refactoring',
         'documentation' ]
+},
+{
+    title: 'When to use TDD:',
+    prose: '<em>probably</em> not today'
+
+},
+{
+    title: 'tooling'
 },
 {
     title: 'Hello Jasmine',
@@ -152,9 +160,11 @@ code:
     bullets: ['spys/mocks let you test only what you want']
 },
 {
-    title: 'Timing is everything',
+    title: 'Timing is...',
     bullets: ['lots of code is anynchronous',
-    'testing async code']
+    'testing async code'],
+    footer: 'everything'
+
 
 },
 {title: 'Questions?'}

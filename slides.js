@@ -2,9 +2,31 @@ var presentation = presentation || {};
 
 presentation.slides = function($displayArea, the_slide_data, the_rainbow){
 
-    var _current_slide = 0;
+    var _current_slide = -1;
     var _slide_data = the_slide_data || presentation.slide_data;
     var _rainbow = the_rainbow || window.Rainbow || null;
+
+    function getSlideHash(slide, slideNumber) {
+        return '#' + encodeURI(slide['title'] || slideNumber);
+    }
+
+    var indexOfSlideHash = function(hash) {
+        for (var i = 0,max = _slide_data.length; i < max; i++) {
+            if ( hash === getSlideHash(_slide_data[i],i)) {
+                return i;
+            }
+        }
+        return -1;
+    };
+
+    $(window).bind('hashchange', function(){        
+        if (_current_slide === -1 || window.location.hash !== getSlideHash(_slide_data[_current_slide], _current_slide)) {
+            var idx = indexOfSlideHash(window.location.hash);
+            if (idx != -1) {
+                show(idx);
+            }
+        }
+    });
 
     var show = function(slideNumber) {
         if(slideNumber < 0 || slideNumber >= _slide_data.length) {
@@ -37,7 +59,10 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
                     }
                 }
             }
-        }        
+        }
+
+        window.location.hash = getSlideHash(slide, slideNumber);
+
     };
 
     var next = function() {
@@ -56,7 +81,8 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         show: show,
         next: next,
         previous: previous,
-        getCurrentSlide: getCurrentSlide
+        getCurrentSlide: getCurrentSlide,
+        indexOfSlideHash: indexOfSlideHash
         
     };
 

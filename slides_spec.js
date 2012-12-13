@@ -74,4 +74,29 @@ describe("navigation functions", function(){
         expect(slides.getCurrentSlide()).toEqual(1); 
     });
 
+    describe("hash function", function(){
+
+        afterEach(function() {
+            window.location.hash = '';
+        });
+
+
+        it("should change the url to reflect the slide", function() {
+            slides.show(0);
+            expect(window.location.href).toContain(encodeURI(slide_data[0].title));
+        });
+
+        it("should react to changes in the url to reflect the slide", function() {
+            slides.show(0);
+            window.location.hash = encodeURI(slide_data[1].title);        
+            $(window).trigger('hashchange');
+            waitsFor(function(){
+                return slides.getCurrentSlide() == 1;
+            },'the location should change',250);
+            
+        });
+
+    });
+    
+
 });
