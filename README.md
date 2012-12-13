@@ -3,14 +3,17 @@ jasmine.presentation
 
 a presentation for holiday.js
 
-to use
--------:
+to use:
+=============
 
 grunt
+
 navigate to localhost:6001
+
 go fullscreen
 
-controls
---------
+controls:
+===========
 next slide: mouseclick, spacebar, right arrow 
+
 prev slide: back arrow
