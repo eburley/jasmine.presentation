@@ -31,57 +31,49 @@ presentation.slide_data = [
 {
     title: 'But the best part...',
     hero: 'parsimony/thrift:<br />extreme unwillingness to spend money or use resources',
-    footer: 'if you can\'t test it, do you need it? (YAGNI)'
+    footer: 'if you can\'t test it, do you need it?'
 },
 {
     title: 'Side effects may include:',
     bullets: [
         'detect bugs',
         'safer refactoring',
-        'documentation' ]
+        'documentation' ]    
 },
 {
-    title: 'When to use TDD:',
-    prose: '<em>probably</em> not today'
-
+    title: 'What you don\'t need to test:',
+    bullets: ['hackathon code (unless you want to)',
+    'simple \'everyday\' code',
+    'OPP',
+    'view/DOM state']
 },
 {
-    title: 'tooling'
-},
-{
-    title: 'Hello Jasmine',
+    title: 'Tooling',
     bullets: [
-        'start with an expectation',
-        'keep it simple - take small steps',
-        'arrange, act, assert'
-    ],
+        'incorporate testing into your work-flow',
+        'invest in testing infrastructure',
+        'make sure its part of your CI '
+    ]    
+},
+{
+    title: 'Hello Jasmine: first write a test',
+    prose: 'start with an expectation',
     code:
 'describe("my slides", function(){\n'+
-'\n'+
 '   it("should have a way to go to a slide", function(){\n'+
 '      var slides = presentation.slides(); // arrange\n'+
 '      slides.show(1); // act\n'+
 '      expect(slides.getCurrentSlide()).toEqual(1); // assert\n'+
 '   });\n'+
-'}'
-},
-{
-    title: 'Great Expectations',
-    prose: 'expect and matchers are the <em>fluent</em> Swiss Army Knife of Jasmine',
-code:
-'expect(something).toBe();\n' +
-'expect(nothing).not.toBe();\n' +
-'expect(some_words).toContain("st.*f");\n' +
-'expect(someFunction).toBeDefined();\n' +
-'expect(boolean_values).toBeTruthy();\n'
-
+'}',
+    bullets: ['<em>describe</em> is the start of a test suite',
+                '<em>it</em> marks a test case']
 },
 {
     title: 'Hello Jasmine: satisfy the tests',
     prose: 'implement <em>just</em> enough to get it working',
     code:
 'presentation.slides = function(){\n' +
-'\n' +
 '    var _current_slide = 0;\n' +
 '\n' +
 '    var show = function(slideNumber) {\n' +
@@ -96,49 +88,50 @@ code:
 '        show: show,\n' +
 '        getCurrentSlide: getCurrentSlide\n' +
 '    };\n' +
-'\n' +
 '};\n'
+
 },
 {
-    title: 'Wash, Rinse, Repeat...',
+    title: 'Great Expectations',
+    prose: 'expect and matchers are the <em>fluent</em> Swiss Army Knife of Jasmine',
+code:
+'expect(something).toBe();\n' +
+'expect(nothing).not.toBe();\n' +
+'expect(some_words).toContain("st.*f");\n' +
+'expect(someFunction).toBeDefined();\n' +
+'expect(someFunction()).toBeLessThan(43);\n' +
+'expect(boolean_values).toBeTruthy();\n'
+
+},
+{
+    prose: 'As you write more tests you\'ll start repeating yourself',
     code:
+'it("should have a way to go to a slide", function(){\n' +
+'    var $slideDiv, slide_data, slides;    \n' +
+'    $slideDiv = $("#current_slide");\n' +
+'    slide_data = [{title:"hello world",foo:"stuff"}];\n' +
+'    slides = presentation.slides($slideDiv, slide_data);\n' +
+'    slides.show(0); // act\n' +
+'    expect(slides.getCurrentSlide()).toEqual(0); // assert\n' +
+'});\n' +
+'\n' +
 'it("should show slide content", function() {\n' +
-'    var $slideDiv = $("#current_slide");\n' +
-'    var slide_data = [{title:"hello world"}];\n' +
-'    var slides = presentation.slides($slideDiv, slide_data);\n' +
+'    var $slideDiv, slide_data, slides;    \n' +
+'    $slideDiv = $("#current_slide");\n' +
+'    slide_data = [{title:"hello world",foo:"stuff"}];\n' +
+'    slides = presentation.slides($slideDiv, slide_data);\n' +
 '    slides.show(0);\n' +
 '    expect($slideDiv.text()).toContain("hello world");\n' +
-'});\n'
+'}); \n'
 },
-{
-    title: 'make it green',
-    code:
-'...\n' +
-'var show = function(slideNumber) {\n' +
-'    _current_slide = slideNumber;\n' +
-'    var slide = _slide_data[_current_slide];\n' +
-'    $displayArea.empty();\n' +
-'    for ( p in slide ) {\n' +
-'        if ( slide.hasOwnProperty(p) ) {\n' +
-'            $displayArea.append($("<div>").attr("class",p)\n' +
-'               .text(slide[p]));\n' +
-'        }\n' +
-'    }        \n' +
-'};\n' +
-'...\n'
-},
-{
-    title: 'repeatedly getting rid of repetition',
+{    
+    prose: 'Use beforeEach and afterEach to DRY out your code',
     code:
 'var $slideDiv, slide_data, slides;    \n' +
 'beforeEach(function(){\n' +
 '    $slideDiv = $("#current_slide");\n' +
 '    slide_data = [{title:"hello world",foo:"stuff"}];\n' +
 '    slides = presentation.slides($slideDiv, slide_data);\n' +
-'});\n' +
-'\n' +
-'afterEach(function(){\n' +
-'    // you can cleanup messes here.\n' +
 '});\n' +
 '\n' +
 'it("should have a way to go to a slide", function(){\n' +
@@ -152,22 +145,34 @@ code:
 '}); \n'
 },
 {
-    title: 'Immediately!',
-    bullets: ['ddescribe','iit','xdescribe','xit']
-},
-{
     title: 'Spies: Like us?',
-    bullets: ['spys/mocks let you test only what you want']
+    prose: 'Spies let you test only what you want:',
+    footer: 'see Jasmine\'s <a href="http://pivotal.github.com/jasmine/#section-Spies">docs</a> for more on spies',
+    code:
+'it("should hide and show between slides", function() {\n' +
+'    spyOn($slideDiv,"show");\n' +
+'    spyOn($slideDiv,"hide");\n' +
+'    slides.show(0);\n' +
+'    slides.show(1);\n' +
+'    expect($slideDiv.show.calls.length).toEqual(2);\n' +
+'    expect($slideDiv.hide.calls.length).toEqual(1);\n' +
+'});\n'
+    
 },
 {
-    title: 'Timing is...',
-    bullets: ['lots of code is anynchronous',
-    'testing async code'],
-    footer: 'everything'
-
-
+    title: 'Timing is......................everything',
+    prose: 'To test timeout driven functionality,<br /> use a mock clock:',
+    code: 
+'it("should have a playback function", function() {\n' +
+'    jasmine.Clock.useMock();\n' +
+'    slides.playback(500);\n' +
+'    expect(slides.getCurrentSlide()).toEqual(0);\n' +
+'    jasmine.Clock.tick(501);\n' +
+'    expect(slides.getCurrentSlide()).toEqual(1);\n' +
+'});'    
 },
-{title: 'Questions?'}
+{title: 'Questions?',
+footer:'This presentation and associated code is up on github at https://github.com/eburley/jasmine.presentation'}
 
 
 

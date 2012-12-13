@@ -54,8 +54,7 @@
 - what you don't need to test:
   - hackathon code
   - someone else's code
-  - view-ish things: assume IE will always be the same amount of awesome.  Assume that
-  if a view breaks you'll notice.
+  - view-ish things: Assume that if a view breaks you'll notice.
 
 
 

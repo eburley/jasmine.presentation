@@ -32,6 +32,10 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         if(slideNumber < 0 || slideNumber >= _slide_data.length) {
             return;
         }
+
+        if (_current_slide >= 0) {
+            $displayArea.hide();
+        }
         
         _current_slide = slideNumber;
         var slide = _slide_data[_current_slide];
@@ -50,7 +54,7 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
                     if ( p === 'code' && _rainbow) {
                         _rainbow.color(content, 'javascript',
                             function(highlighted_code) {                                
-                                $displayArea.append($('<pre>').attr('class',p).append(highlighted_code));
+                                $displayArea.append($('<pre>').attr('class','code').append(highlighted_code));
                             });
                     }
                     else
@@ -61,6 +65,7 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
             }
         }
 
+        $displayArea.show();
         window.location.hash = getSlideHash(slide, slideNumber);
 
     };
@@ -77,11 +82,19 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         return _current_slide;
     };
 
+    var playback = function(interval) {
+        if ( _current_slide == -1 ) {
+            show(0);
+        }
+        window.setInterval(next,interval);
+    };
+
     return {
         show: show,
         next: next,
-        previous: previous,
+        previous: previous,        
         getCurrentSlide: getCurrentSlide,
+        playback: playback,
         indexOfSlideHash: indexOfSlideHash
         
     };

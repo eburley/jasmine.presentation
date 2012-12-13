@@ -1,5 +1,8 @@
 body {
     background-color: #222;
+    background-image: url('img/low_contrast_linen.png');
+    background-repeat: initial initial;
+    background-position: initial initial;
 
 }
 
@@ -9,16 +12,24 @@ body {
     height: 600px;
     position:relative;        
     padding:10px;
-    color:#EEE;
-    font-family: 'Garamond'
+    color:#DDD;
+    font-family:  'Garamond', 'Didot'
 }
 
-#current_slide .title, #current_slide .big_title{        
-    font-weight: 900;
-    padding-top:40px;
+#current_slide a {    
+    color:#EEE;
+}
+
+#current_slide .title, #current_slide .big_title {
+    font-weight: 900;    
     font-size:32pt;    
     margin-bottom:32px;
 }
+
+#current_slide div:first-child, #current_slide pre:first-child {
+    padding-top:40px;
+}
+
 
 #current_slide .big_title, #current_slide .hero{
     font-size: 48pt;    
@@ -39,10 +50,11 @@ body {
 
 #current_slide .code {
     white-space:pre;
-    background-color: #333;
+    background-color: rgba(0,0,0,0.2);    
     color:#CCC;
-    font-family: 'Anonymous Pro';    
+    font-family: 'Anonymous Pro', 'Menlo', 'Courier';    
     font-size: 18pt;
+    line-height: 1.4em;
     padding: 10px;
 }
 
@@ -54,6 +66,8 @@ body {
     list-style-type: 'disc';
     font-weight: 600;
     font-size: 24pt;
+    line-height: 1.8em;
+
 
 }
 

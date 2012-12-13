@@ -1,4 +1,4 @@
-describe("my slides", function(){
+describe("slides engine", function(){
 
     var $slideDiv, slide_data, slides;    
     beforeEach(function(){
@@ -36,9 +36,18 @@ describe("my slides", function(){
     });
 
 
-    it("should syntax highlight code", function(){
+    it("should syntax highlight code", function() {
         slides.show(1);
         expect($slideDiv.html()).toContain("comment");
+    });
+
+    it("should hide and show between slides", function() {
+        spyOn($slideDiv,"show");
+        spyOn($slideDiv,"hide");
+        slides.show(0);
+        slides.show(1);
+        expect($slideDiv.show.calls.length).toEqual(2);
+        expect($slideDiv.hide.calls.length).toEqual(1);
     });
 
 });
@@ -74,12 +83,22 @@ describe("navigation functions", function(){
         expect(slides.getCurrentSlide()).toEqual(1); 
     });
 
+    describe("playback function", function() {
+
+        it("should have a playback function which plays slides back on an interval", function() {
+            jasmine.Clock.useMock();
+            slides.playback(500);
+            expect(slides.getCurrentSlide()).toEqual(0);
+            jasmine.Clock.tick(501);
+            expect(slides.getCurrentSlide()).toEqual(1);
+        });
+    });
+
     describe("hash function", function(){
 
         afterEach(function() {
             window.location.hash = '';
         });
-
 
         it("should change the url to reflect the slide", function() {
             slides.show(0);
