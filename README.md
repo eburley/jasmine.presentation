@@ -6,7 +6,10 @@ a presentation for holiday.js
 prerequisites
 ======================
 - node/npm
-- grunt
+
+installation
+======================
+- npm install
 
 to use:
 =============
@@ -19,7 +22,7 @@ controls:
 - next slide: mouseclick, spacebar, right arrow 
 - prev slide: back arrow
 
-credits:
+dependencies:
 =================
 - [jasmine.js](http://pivotal.github.com/jasmine/)
 - [grunt.js](https://github.com/gruntjs/grunt)

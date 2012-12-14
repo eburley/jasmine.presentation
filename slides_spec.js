@@ -2,7 +2,7 @@ describe("slides engine", function(){
 
     var $slideDiv, slide_data, slides;    
     beforeEach(function(){
-        $slideDiv = $("#current_slide");
+        $slideDiv = $("<div>");
         slide_data = [
                         {title:"hello world",foo:"stuff"},
                         {stuff:["one","two"], code:"function(){}//code"}
@@ -91,6 +91,18 @@ describe("navigation functions", function(){
             expect(slides.getCurrentSlide()).toEqual(0);
             jasmine.Clock.tick(501);
             expect(slides.getCurrentSlide()).toEqual(1);
+        });
+
+        it("should support a slide change callback", function() {
+            var callback = jasmine.createSpy('callback');
+            slides.onSlideChange(callback);
+            runs(function(){
+                slides.playback(100);
+            });
+
+            waitsFor(function(){
+                return callback.calls.length > 0;
+            },"the callback should have been called",200);
         });
     });
 

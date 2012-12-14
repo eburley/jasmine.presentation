@@ -5,6 +5,7 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
     var _current_slide = -1;
     var _slide_data = the_slide_data || presentation.slide_data;
     var _rainbow = the_rainbow || window.Rainbow || null;
+    var slideChangeCallback = function(){}; 
 
     function getSlideHash(slide, slideNumber) {
         return '#' + encodeURI(slide['title'] || slideNumber);
@@ -67,6 +68,7 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
 
         $displayArea.show();
         window.location.hash = getSlideHash(slide, slideNumber);
+        slideChangeCallback(slideNumber);
 
     };
 
@@ -89,12 +91,17 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         window.setInterval(next,interval);
     };
 
+    var onSlideChange = function(callback) {
+        slideChangeCallback = callback;
+    };
+
     return {
         show: show,
         next: next,
-        previous: previous,        
+        previous: previous,
         getCurrentSlide: getCurrentSlide,
         playback: playback,
+        onSlideChange: onSlideChange,
         indexOfSlideHash: indexOfSlideHash
         
     };
