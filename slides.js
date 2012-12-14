@@ -1,11 +1,11 @@
 var presentation = presentation || {};
 
-presentation.slides = function($displayArea, the_slide_data, the_rainbow){
+presentation.slides = function($displayArea, the_slide_data){
 
     var _current_slide = -1;
-    var _slide_data = the_slide_data || presentation.slide_data;
-    var _rainbow = the_rainbow || window.Rainbow || null;
+    var _slide_data = the_slide_data || presentation.slide_data;    
     var slideChangeCallback = function(){}; 
+    var slideContentFilter = function(){};
 
     function getSlideHash(slide, slideNumber) {
         return '#' + encodeURI(slide['title'] || slideNumber);
@@ -39,29 +39,26 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         }
         
         _current_slide = slideNumber;
-        var slide = _slide_data[_current_slide];
+
+        // clone here so the content filter doesn't corrupt
+        var slide = $.extend(true, {}, _slide_data[_current_slide]);
+        
+        // filter
+        slideContentFilter(slide);
+
         $displayArea.empty();
-        for ( p in slide ) {
-            if ( slide.hasOwnProperty(p) ) {                
+        for ( var p in slide ) {
+            if ( slide.hasOwnProperty(p) ) {
                 if(typeof slide[p] === 'object') {
                     var $ul = $('<ul>').attr('class',p);
-                    for ( li in slide[p] ){
+                    for ( var li in slide[p] ){
                         $ul.append($('<li>').append(slide[p][li]));
                     }
                     $displayArea.append($ul);
                 }
                 else {
-                    var content = slide[p];                                        
-                    if ( p === 'code' && _rainbow) {
-                        _rainbow.color(content, 'javascript',
-                            function(highlighted_code) {                                
-                                $displayArea.append($('<pre>').attr('class','code').append(highlighted_code));
-                            });
-                    }
-                    else
-                    {
-                        $displayArea.append($('<div>').attr('class',p).append(content));
-                    }
+                    var content = slide[p];
+                    $displayArea.append($('<div>').attr('class',p).append(content));
                 }
             }
         }
@@ -95,6 +92,10 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         slideChangeCallback = callback;
     };
 
+    var setContentFilter = function(filter) {
+        slideContentFilter = filter;
+    };
+
     return {
         show: show,
         next: next,
@@ -102,8 +103,8 @@ presentation.slides = function($displayArea, the_slide_data, the_rainbow){
         getCurrentSlide: getCurrentSlide,
         playback: playback,
         onSlideChange: onSlideChange,
+        setContentFilter: setContentFilter,
         indexOfSlideHash: indexOfSlideHash
-        
     };
 
 };

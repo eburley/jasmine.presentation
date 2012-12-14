@@ -48,7 +48,7 @@ body {
 }
 
 
-#current_slide .code {
+#current_slide pre.code {
     white-space:pre;
     background-color: rgba(0,0,0,0.2);    
     color:#CCC;

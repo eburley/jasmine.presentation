@@ -5,7 +5,7 @@ describe("slides engine", function(){
         $slideDiv = $("<div>");
         slide_data = [
                         {title:"hello world",foo:"stuff"},
-                        {stuff:["one","two"], code:"function(){}//code"}
+                        {title:"slide two", stuff:["one","two"], code:"function(){}//code"}
                      ];
         slides = presentation.slides($slideDiv, slide_data);
     });
@@ -35,10 +35,11 @@ describe("slides engine", function(){
         expect($slideDiv.find("ul li").text()).toContain("one");
     });
 
-
-    it("should syntax highlight code", function() {
-        slides.show(1);
-        expect($slideDiv.html()).toContain("comment");
+    it("should support a content filter", function() {
+        var contentFilter = function(slide){slide.title = slide.title + '!';}
+        slides.setContentFilter(contentFilter);
+        slides.show(0);        
+        expect($slideDiv.text()).toContain(slide_data[0].title + '!');
     });
 
     it("should hide and show between slides", function() {
@@ -51,6 +52,7 @@ describe("slides engine", function(){
     });
 
 });
+
 
 describe("navigation functions", function(){
 

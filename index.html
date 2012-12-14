@@ -13,6 +13,17 @@
         function(){
             var $slideDiv = $('#current_slide');
             var slides = presentation.slides($slideDiv); // arrange    
+
+            slides.setContentFilter(function(slide){
+                if(slide.hasOwnProperty('code')) {                                  
+                    slide['code'] = '<pre class="code" data-language="javascript">' + slide['code'] + '</pre>';                      
+                }  
+            });
+
+            slides.onSlideChange(function(){
+              window.Rainbow.color();
+            });
+
             var slideNumber = slides.indexOfSlideHash(window.location.hash);
             if ( slideNumber == -1) {
                 slides.show(0);  
