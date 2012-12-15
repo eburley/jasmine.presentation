@@ -8,6 +8,7 @@ presentation.slides = function($displayArea, the_slide_data){
     var slideChangeCallback = noop; 
     var slideContentFilter = noop;
     var beforeSlideChangeCallback = noop;
+    var _displayArea = $displayArea;
 
     function getSlideHash(slide, slideNumber) {
         return '#' + encodeURI(slide['title'] || slideNumber);
@@ -38,7 +39,7 @@ presentation.slides = function($displayArea, the_slide_data){
 
         if (_current_slide >= 0) {
             beforeSlideChangeCallback(_slide_data[_current_slide]);
-            $displayArea.hide();
+            _displayArea.hide();
         }
         
         _current_slide = slideNumber;
@@ -49,7 +50,7 @@ presentation.slides = function($displayArea, the_slide_data){
         // filter
         slideContentFilter(slide);
 
-        $displayArea.empty();
+        _displayArea.empty();
         for ( var p in slide ) {
             if ( slide.hasOwnProperty(p) ) {
                 if(typeof slide[p] === 'object') {
@@ -57,16 +58,16 @@ presentation.slides = function($displayArea, the_slide_data){
                     for ( var li in slide[p] ){
                         $ul.append($('<li>').append(slide[p][li]));
                     }
-                    $displayArea.append($ul);
+                    _displayArea.append($ul);
                 }
                 else {
                     var content = slide[p];
-                    $displayArea.append($('<div>').attr('class',p).append(content));
+                    _displayArea.append($('<div>').attr('class',p).append(content));
                 }
             }
         }
 
-        $displayArea.show();
+        _displayArea.show();
         window.location.hash = getSlideHash(slide, slideNumber);
         slideChangeCallback(slideNumber);
 
@@ -103,6 +104,10 @@ presentation.slides = function($displayArea, the_slide_data){
         slideContentFilter = filter || noop;
     };
 
+    var setDisplayArea = function(display_area) {
+        _displayArea = display_area;
+    };
+
     return {
         show: show,
         next: next,
@@ -112,6 +117,7 @@ presentation.slides = function($displayArea, the_slide_data){
         onSlideChange: onSlideChange,
         beforeSlideChange: beforeSlideChange,
         setContentFilter: setContentFilter,
+        setDisplayArea: setDisplayArea,
         indexOfSlideHash: indexOfSlideHash
     };
 

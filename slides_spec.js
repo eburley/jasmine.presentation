@@ -10,7 +10,7 @@ describe("slides engine", function() {
 
     describe("basics", function(){
 
-        it("should have a way to go to a slide", function(){
+        it("should have a way to go to a slide", function() {
             slides.show(0); // act
             expect(slides.getCurrentSlide()).toEqual(0); // assert
         });
@@ -20,10 +20,17 @@ describe("slides engine", function() {
             expect($slideDiv.text()).toContain("hello world");
         });
 
+        it("should have a way to set the display area", function() {
+            var new_display_area = $("<div>");
+            slides.setDisplayArea(new_display_area);
+            slides.show(0);
+            expect(new_display_area.text()).toContain(slide_data[0].title);
+        });
+
         it("should add a div for each property", function() {
             slides.show(0);
-            expect($slideDiv.find(".title").text()).toContain("hello world"); 
-            expect($slideDiv.find(".foo").text()).toContain("stuff"); 
+            expect($slideDiv.find(".title").text()).toContain("hello world");
+            expect($slideDiv.find(".foo").text()).toContain("stuff");
         });
 
         it("should turn arrays into ul/li", function() {
