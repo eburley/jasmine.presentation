@@ -1,6 +1,6 @@
 var presentation = presentation || {};
 
-presentation.slide_data = [
+presentation.slideData = [
 
 {
     "big_title": "Testing JavaScript<br/> with Jasmine",
@@ -80,14 +80,14 @@ presentation.slide_data = [
     "prose": "implement <em>just</em> enough to get it working",
     "code":
 "presentation.slides = function(){\n" +
-"    var _current_slide = 0;\n" +
+"    var _currentSlide = 0;\n" +
 "\n" +
 "    var show = function(slideNumber) {\n" +
-"        _current_slide = slideNumber;\n" +
+"        _currentSlide = slideNumber;\n" +
 "    };\n" +
 "\n" +
 "    var getCurrentSlide = function() {\n" +
-"        return _current_slide;\n" +
+"        return _currentSlide;\n" +
 "    };\n" +
 "\n" +
 "    return {\n" +
@@ -103,12 +103,12 @@ presentation.slide_data = [
     "code":
 "expect(something).toBe(true);\n" +
 "expect(nothing).not.toBe(false);\n" +
-"expect(some_words).toContain(\"stuff\");\n" +
-"expect(some_words).toMatch(\"st.*f\");\n" +
+"expect(someWords).toContain(\"stuff\");\n" +
+"expect(someWords).toMatch(\"st.*f\");\n" +
 "expect(someFunction).toBeDefined();\n" +
-"expect(the_answer).toEqual(42);\n" +
+"expect(theAnswer).toEqual(42);\n" +
 "expect(someFunction()).toBeLessThan(43);\n" +
-"expect(boolean_values).toBeTruthy();\n",
+"expect(booleanValues).toBeTruthy();\n",
     "footer": "Many more matchers are available, plus you can write your own."
 
 },
@@ -117,19 +117,19 @@ presentation.slide_data = [
     "code":
 "describe(\"my slides\", function() {\n" +
 "    it(\"should have a way to go to a slide\", function(){\n" +
-"        var $slideDiv, slide_data, slides;    \n" +
+"        var $slideDiv, slideData, slides;    \n" +
 "        $slideDiv = $(\"<div>\");\n" +
-"        slide_data = [{title:\"hello world\",foo:\"stuff\"}];\n" +
-"        slides = presentation.slides($slideDiv, slide_data);\n" +
+"        slideData = [{title:\"hello world\",foo:\"stuff\"}];\n" +
+"        slides = presentation.slides($slideDiv, slideData);\n" +
 "        slides.show(0); // act\n" +
 "        expect(slides.getCurrentSlide()).toEqual(0); // assert\n" +
 "    });\n" +
 "    \n" +
 "    it(\"should show slide content\", function() {\n" +
-"        var $slideDiv, slide_data, slides;    \n" +
+"        var $slideDiv, slideData, slides;    \n" +
 "        $slideDiv = $(\"<div>\");\n" +
-"        slide_data = [{title:\"hello world\",foo:\"stuff\"}];\n" +
-"        slides = presentation.slides($slideDiv, slide_data);\n" +
+"        slideData = [{title:\"hello world\",foo:\"stuff\"}];\n" +
+"        slides = presentation.slides($slideDiv, slideData);\n" +
 "        slides.show(0);\n" +
 "        expect($slideDiv.text()).toContain(\"hello world\");\n" +
 "    }); \n" +
@@ -139,11 +139,11 @@ presentation.slide_data = [
     "prose": "Use beforeEach and afterEach to <em>DRY</em> out your code",
     "code":
 "describe(\"my slides\", function() {\n" +
-"    var $slideDiv, slide_data, slides;    \n" +
+"    var $slideDiv, slideData, slides;    \n" +
 "    beforeEach(function(){\n" +
 "        $slideDiv = $(\"<div>\");\n" +
-"        slide_data = [{title:\"hello world\",foo:\"stuff\"}];\n" +
-"        slides = presentation.slides($slideDiv, slide_data);\n" +
+"        slideData = [{title:\"hello world\",foo:\"stuff\"}];\n" +
+"        slides = presentation.slides($slideDiv, slideData);\n" +
 "    });\n" +
 "    \n" +
 "    it(\"should have a way to go to a slide\", function(){\n" +

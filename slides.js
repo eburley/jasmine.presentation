@@ -1,9 +1,9 @@
 var presentation = presentation || {};
 
-presentation.slides = function($displayArea, the_slide_data){
+presentation.slides = function($displayArea, theSlideData){
 
-    var _current_slide = -1;
-    var _slide_data = the_slide_data || presentation.slide_data;    
+    var _currentSlide = -1;
+    var _slideData = theSlideData || presentation.slideData;    
     var noop = function(){};
     var slideChangeCallback = noop; 
     var slideContentFilter = noop;
@@ -15,8 +15,8 @@ presentation.slides = function($displayArea, the_slide_data){
     }
 
     var indexOfSlideHash = function(hash) {
-        for (var i = 0,max = _slide_data.length; i < max; i++) {
-            if ( hash === getSlideHash(_slide_data[i],i)) {
+        for (var i = 0,max = _slideData.length; i < max; i++) {
+            if ( hash === getSlideHash(_slideData[i],i)) {
                 return i;
             }
         }
@@ -24,7 +24,7 @@ presentation.slides = function($displayArea, the_slide_data){
     };
 
     $(window).bind('hashchange', function(){        
-        if (_current_slide === -1 || window.location.hash !== getSlideHash(_slide_data[_current_slide], _current_slide)) {
+        if (_currentSlide === -1 || window.location.hash !== getSlideHash(_slideData[_currentSlide], _currentSlide)) {
             var idx = indexOfSlideHash(window.location.hash);
             if (idx != -1) {
                 show(idx);
@@ -33,19 +33,19 @@ presentation.slides = function($displayArea, the_slide_data){
     });
 
     var show = function(slideNumber) {
-        if(slideNumber < 0 || slideNumber >= _slide_data.length) {
+        if(slideNumber < 0 || slideNumber >= _slideData.length) {
             return;
         }
 
-        if (_current_slide >= 0) {
-            beforeSlideChangeCallback(_slide_data[_current_slide]);
+        if (_currentSlide >= 0) {
+            beforeSlideChangeCallback(_slideData[_currentSlide]);
             _displayArea.hide();
         }
         
-        _current_slide = slideNumber;
+        _currentSlide = slideNumber;
 
         // clone here so the content filter doesn't corrupt
-        var slide = $.extend(true, {}, _slide_data[_current_slide]);
+        var slide = $.extend(true, {}, _slideData[_currentSlide]);
         
         // filter
         slideContentFilter(slide);
@@ -74,19 +74,19 @@ presentation.slides = function($displayArea, the_slide_data){
     };
 
     var next = function() {
-        show(_current_slide + 1);
+        show(_currentSlide + 1);
     };
 
     var previous = function() {
-        show(_current_slide -1);
+        show(_currentSlide -1);
     };
 
     var getCurrentSlide = function() {
-        return _current_slide;
+        return _currentSlide;
     };
 
     var playback = function(interval) {
-        if ( _current_slide == -1 ) {
+        if ( _currentSlide == -1 ) {
             show(0);
         }
         window.setInterval(next,interval);
@@ -104,8 +104,8 @@ presentation.slides = function($displayArea, the_slide_data){
         slideContentFilter = filter || noop;
     };
 
-    var setDisplayArea = function(display_area) {
-        _displayArea = display_area;
+    var setDisplayArea = function(displayArea) {
+        _displayArea = displayArea;
     };
 
     return {

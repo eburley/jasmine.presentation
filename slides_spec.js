@@ -1,11 +1,11 @@
 describe("slides engine", function() {
 
-    var $slideDiv, slide_data, slides;
+    var $slideDiv, slideData, slides;
     beforeEach(function(){
         $slideDiv = $("<div>");
-        slide_data = [{title:"hello world",foo:"stuff"},
+        slideData = [{title:"hello world",foo:"stuff"},
                       {title: "slide two", stuff:["one","two"],}];
-        slides = presentation.slides($slideDiv, slide_data);
+        slides = presentation.slides($slideDiv, slideData);
     });
 
     describe("basics", function(){
@@ -21,10 +21,10 @@ describe("slides engine", function() {
         });
 
         it("should have a way to set the display area", function() {
-            var new_display_area = $("<div>");
-            slides.setDisplayArea(new_display_area);
+            var newDisplayArea = $("<div>");
+            slides.setDisplayArea(newDisplayArea);
             slides.show(0);
-            expect(new_display_area.text()).toContain(slide_data[0].title);
+            expect(newDisplayArea.text()).toContain(slideData[0].title);
         });
 
         it("should add a div for each property", function() {
@@ -42,7 +42,7 @@ describe("slides engine", function() {
             var contentFilter = function(slide){slide.title = slide.title + '!';}
             slides.setContentFilter(contentFilter);
             slides.show(0);        
-            expect($slideDiv.text()).toContain(slide_data[0].title + '!');
+            expect($slideDiv.text()).toContain(slideData[0].title + '!');
         });
 
         it("should hide and show between slides", function() {
@@ -124,12 +124,12 @@ describe("slides engine", function() {
 
             it("should change the url to reflect the slide", function() {
                 slides.show(0);
-                expect(window.location.href).toContain(encodeURI(slide_data[0].title));
+                expect(window.location.href).toContain(encodeURI(slideData[0].title));
             });
 
             it("should react to changes in the url to reflect the slide", function() {
                 slides.show(0);
-                window.location.hash = encodeURI(slide_data[1].title);
+                window.location.hash = encodeURI(slideData[1].title);
                 $(window).trigger('hashchange');
                 waitsFor(function(){
                     return slides.getCurrentSlide() == 1;
