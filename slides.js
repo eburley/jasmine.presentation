@@ -4,8 +4,10 @@ presentation.slides = function($displayArea, the_slide_data){
 
     var _current_slide = -1;
     var _slide_data = the_slide_data || presentation.slide_data;    
-    var slideChangeCallback = function(){}; 
-    var slideContentFilter = function(){};
+    var noop = function(){};
+    var slideChangeCallback = noop; 
+    var slideContentFilter = noop;
+    var beforeSlideChangeCallback = noop;
 
     function getSlideHash(slide, slideNumber) {
         return '#' + encodeURI(slide['title'] || slideNumber);
@@ -35,6 +37,7 @@ presentation.slides = function($displayArea, the_slide_data){
         }
 
         if (_current_slide >= 0) {
+            beforeSlideChangeCallback(_slide_data[_current_slide]);
             $displayArea.hide();
         }
         
@@ -89,11 +92,15 @@ presentation.slides = function($displayArea, the_slide_data){
     };
 
     var onSlideChange = function(callback) {
-        slideChangeCallback = callback;
+        slideChangeCallback = callback || noop;
+    };
+
+    var beforeSlideChange = function(callback) {
+        beforeSlideChangeCallback = callback || noop;
     };
 
     var setContentFilter = function(filter) {
-        slideContentFilter = filter;
+        slideContentFilter = filter || noop;
     };
 
     return {
@@ -103,6 +110,7 @@ presentation.slides = function($displayArea, the_slide_data){
         getCurrentSlide: getCurrentSlide,
         playback: playback,
         onSlideChange: onSlideChange,
+        beforeSlideChange: beforeSlideChange,
         setContentFilter: setContentFilter,
         indexOfSlideHash: indexOfSlideHash
     };
