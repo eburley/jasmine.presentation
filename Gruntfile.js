@@ -1,21 +1,22 @@
-
-
 /*global module:false*/
 module.exports = function(grunt) {
 
   var reloadPort = 32000;
 
-  var jsCode = ['slides.js'];
-  var jsSpecs = ['slides_spec.js'];
-  var jsData = ['slide_data.js'];
+  var jsCode = ['src/**.js'];
+  var jsSpecs = ['tests/**_spec.js'];
+  var jsData = ['data/**.js'];
 
   var jsFiles = jsCode.concat(jsCode, jsSpecs, jsData);
 
-  // Project configuration.
+  /**
+   * configure grunt to support hinting, unit testing, watching, and a server
+   * @type {Object}
+   */
   grunt.initConfig({
 
     jshint:{
-      all: jsCode.concat(jsData)
+      all: jsFiles
     },
     jasmine: {
       all: {
@@ -56,5 +57,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'jasmine', 'connect', 'watch']);
   // alias jasmine as test
   grunt.registerTask('test', ['jasmine']);
+  // alias jshint as lint
+  grunt.registerTask('lint', ['jshint']);
 
 };
