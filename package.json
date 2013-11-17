@@ -9,6 +9,7 @@
     "grunt-contrib-connect": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-jasmine": "*",
+    "grunt-template-jasmine-requirejs": "*",
     "requirejs": "*"    
   }
 }

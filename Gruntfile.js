@@ -16,18 +16,30 @@ module.exports = function(grunt) {
    */
   grunt.initConfig({
 
+    // hint/lint
     jshint:{
       all: jsFiles
     },
+
+    // unit tests
     jasmine: {
       all: {
         src: jsCode.concat(jsData),
         options:{
           specs: jsSpecs,
-          vendor: ['lib/jquery*.js']
+          vendor: ['lib/jquery*.js'],
+          template: require('grunt-template-jasmine-requirejs'),
+          templateOptions: {
+            requireConfigFile: 'src/app.js',
+            requireConfig: {
+              baseUrl: '.' // override the baseUrl for require.js because of relative path issues.
+            }
+          }
         }
       }
     },
+
+    // live reload, lint, and unit tests.
     watch:{
       files: ['index.html', 'SpecRunner.html', 'slides.css'].concat(jsFiles),
       tasks: ['jshint', 'jasmine'],
@@ -37,6 +49,8 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    // dev server.
     connect:{
       server:{
         options: {
