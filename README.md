@@ -1,7 +1,8 @@
 jasmine.presentation
 ====================
 
-a presentation about TDD
+A presentation about BDD.  
+[Video here](http://vimeo.com/57296465)
 
 prerequisites
 ======================
