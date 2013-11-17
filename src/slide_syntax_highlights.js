@@ -2,6 +2,11 @@ define(['rainbow'],
 
 function(rainbow){
 
+    /**
+     * Enables syntax highlighting on a presentation.
+     * 
+     * @param  {Slides} presentation  a presentation engine     
+     */
     return function(presentation) {
 
         // subscribe to slide changes.

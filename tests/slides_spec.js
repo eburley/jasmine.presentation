@@ -1,16 +1,29 @@
 define(['src/slides'],
-    function(slides){
+
+function(Slides){
+
     describe("slides engine", function() {
 
     var $slideDiv, slideData, presentation;
+
     beforeEach(function(){
         $slideDiv = $("<div>");
         slideData = [{title:"hello world",foo:"stuff"},
                       {title: "slide two", stuff:["one","two"],}];
-        presentation = slides($slideDiv, slideData);
+        presentation = new Slides($slideDiv, slideData);
+    });
+
+    afterEach(function(){
+        // cleanup unhooks hash change stuff.
+        presentation.cleanup();
     });
 
     describe("basics", function(){
+
+        it("should protect against being instantiated without new", function() {
+            var x = Slides($slideDiv, slideData);
+            expect(x instanceof Slides).toBeTruthy();
+        });
 
         it("should have a way to go to a slide", function() {
             presentation.show(0); // act
@@ -135,7 +148,7 @@ define(['src/slides'],
                 $(window).trigger('hashchange');
                 waitsFor(function(){
                     return presentation.getCurrentSlide() == 1;
-                },'the location should change',500);
+                },'the location should change',1000);
                 
             });
 
@@ -145,4 +158,5 @@ define(['src/slides'],
     });
 
 });
+
 });

@@ -2,6 +2,12 @@ define(['jquery'],
 
 function($){
 
+    /**
+     * A basic slide navigation scheme that wires up to keyboard and 
+     * click events and calls next and previous on the pressentation.
+     * 
+     * @param  {Slides} presentation  The slide engine.     
+     */
     return function(presentation) {
 
         $(document).on('click', function() {
