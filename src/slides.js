@@ -1,5 +1,7 @@
-define([], function(){
-    var result = function($displayArea, theSlideData){
+define([], 
+
+function(){
+    var result = function($displayArea, theSlideData) {
 
         var _currentSlide = -1,
         _slideData = theSlideData || presentation.slideData,
@@ -32,7 +34,7 @@ define([], function(){
             return -1;
         };
 
-        $(window).bind('hashchange', function(){
+        $(window).bind('hashchange', function() {
             if (_currentSlide === -1 || window.location.hash !== getSlideHash(_slideData[_currentSlide], _currentSlide)) {
                 var idx = indexOfSlideHash(window.location.hash);
                 if (idx != -1) {
@@ -131,4 +133,6 @@ define([], function(){
         };
     };
     return result;
-});
+}
+
+);
