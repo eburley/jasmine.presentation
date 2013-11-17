@@ -39,9 +39,9 @@ describe("slides engine", function() {
         });
 
         it("should support a content filter", function() {
-            var contentFilter = function(slide){slide.title = slide.title + '!';}
+            var contentFilter = function(slide){slide.title = slide.title + '!';};
             slides.setContentFilter(contentFilter);
-            slides.show(0);        
+            slides.show(0);
             expect($slideDiv.text()).toContain(slideData[0].title + '!');
         });
 

@@ -1,10 +1,13 @@
 {
-    "name": "jasmine.presentation",
-    "version": "0.0.1",
-    "author": "Eric Burley <eric@eburley.com>",
-    "description": "a presentation about jasmine, and a presentation engine",
-    "dependencies": {
-        "grunt" : "*",
-        "grunt-reload" : "*"
-    } 
+  "name": "jasmine.presentation",
+  "version": "0.0.1",
+  "author": "Eric Burley <eric@eburley.com>",
+  "description": "a presentation about jasmine, and a presentation engine",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-jasmine": "*"
+  }
 }

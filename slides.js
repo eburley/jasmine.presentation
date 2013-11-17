@@ -2,19 +2,29 @@ var presentation = presentation || {};
 
 presentation.slides = function($displayArea, theSlideData){
 
-    var _currentSlide = -1;
-    var _slideData = theSlideData || presentation.slideData;    
-    var noop = function(){};
-    var slideChangeCallback = noop; 
-    var slideContentFilter = noop;
-    var beforeSlideChangeCallback = noop;
-    var _displayArea = $displayArea;
+    var _currentSlide = -1,
+    _slideData = theSlideData || presentation.slideData,
+    noop = function(){},
+    slideChangeCallback = noop,
+    slideContentFilter = noop,
+    beforeSlideChangeCallback = noop,
+    _displayArea = $displayArea,
+    indexOfSlideHash,
+    show,
+    next,
+    previous,
+    getCurrentSlide,
+    playback,
+    onSlideChange,
+    beforeSlideChange,
+    setContentFilter,
+    setDisplayArea;
 
     function getSlideHash(slide, slideNumber) {
-        return '#' + encodeURI(slide['title'] || slideNumber);
+        return '#' + encodeURI(slide.title || slideNumber);
     }
 
-    var indexOfSlideHash = function(hash) {
+    indexOfSlideHash = function(hash) {
         for (var i = 0,max = _slideData.length; i < max; i++) {
             if ( hash === getSlideHash(_slideData[i],i)) {
                 return i;
@@ -23,7 +33,7 @@ presentation.slides = function($displayArea, theSlideData){
         return -1;
     };
 
-    $(window).bind('hashchange', function(){        
+    $(window).bind('hashchange', function(){
         if (_currentSlide === -1 || window.location.hash !== getSlideHash(_slideData[_currentSlide], _currentSlide)) {
             var idx = indexOfSlideHash(window.location.hash);
             if (idx != -1) {
@@ -32,7 +42,7 @@ presentation.slides = function($displayArea, theSlideData){
         }
     });
 
-    var show = function(slideNumber) {
+    show = function(slideNumber) {
         if(slideNumber < 0 || slideNumber >= _slideData.length) {
             return;
         }
@@ -73,38 +83,38 @@ presentation.slides = function($displayArea, theSlideData){
 
     };
 
-    var next = function() {
+    next = function() {
         show(_currentSlide + 1);
     };
 
-    var previous = function() {
+    previous = function() {
         show(_currentSlide -1);
     };
 
-    var getCurrentSlide = function() {
+    getCurrentSlide = function() {
         return _currentSlide;
     };
 
-    var playback = function(interval) {
+    playback = function(interval) {
         if ( _currentSlide == -1 ) {
             show(0);
         }
         window.setInterval(next,interval);
     };
 
-    var onSlideChange = function(callback) {
+    onSlideChange = function(callback) {
         slideChangeCallback = callback || noop;
     };
 
-    var beforeSlideChange = function(callback) {
+    beforeSlideChange = function(callback) {
         beforeSlideChangeCallback = callback || noop;
     };
 
-    var setContentFilter = function(filter) {
+    setContentFilter = function(filter) {
         slideContentFilter = filter || noop;
     };
 
-    var setDisplayArea = function(displayArea) {
+    setDisplayArea = function(displayArea) {
         _displayArea = displayArea;
     };
 

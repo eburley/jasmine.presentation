@@ -6,6 +6,11 @@ body {
 
 }
 
+/**
+ * styles for current slide.
+ */
+
+
 #current_slide {
     margin:0 auto;    
     width:960px; 

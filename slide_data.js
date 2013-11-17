@@ -1,7 +1,17 @@
 var presentation = presentation || {};
 
-presentation.slideData = [
 
+/**
+ * slideData is an array of slide data.
+ *
+ * each slide can have the following properties:
+ * - title: the title of the slide
+ * - big_title: an even larger title
+ * - code: a block of code that will get formatted with syntax highlighting
+ * - bullets: an array of strings that will be turned into bullet points.
+ * @type {Array}
+ */
+presentation.slideData = [
 {
     "big_title": "Testing JavaScript<br/> with Jasmine",
     "title": "Eric Burley",
@@ -24,7 +34,7 @@ presentation.slideData = [
 },
 {
     "title": "Better Code",
-    "bullets": [        
+    "bullets": [
     "you <em>should</em> get modules that do one thing",
     "you <em>will probably</em> get loosely coupled modules",
     "you <em>might even</em> end up using IoC or DI mechanisms"]
@@ -198,7 +208,7 @@ presentation.slideData = [
 "    waitsFor(function(){\n" +
 "        return callback.calls.length > 0;\n" +
 "    },\"the callback should have been called\",200);\n" +
-"});\n",    
+"});\n"
 
 },
 {
