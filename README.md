@@ -1,11 +1,12 @@
 jasmine.presentation
 ====================
 
-a presentation for holiday.js
+a presentation about TDD
 
 prerequisites
 ======================
 - node/npm
+- grunt-cli (npm install -g grunt-cli)
 
 installation
 ======================
@@ -14,7 +15,6 @@ installation
 to use:
 =============
 - grunt
-- navigate to localhost:6001
 - go fullscreen
 
 controls:
@@ -26,6 +26,9 @@ dependencies:
 =================
 - [jasmine.js](http://pivotal.github.com/jasmine/)
 - [grunt.js](https://github.com/gruntjs/grunt)
-- [grunt-reload](https://github.com/webxl/grunt-reload)
+- [grunt-contrib-watch] (https://github.com/gruntjs/grunt-contrib-watch)
+- [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect)
+- [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
+- [grunt-contrib-jasmine](https://github.com/gruntjs/grunt-contrib-jasmine)
 - [rainbow.js](http://craig.is/making/rainbows/)
 - [subtlepatterns.com](http://subtlepatterns.com/)
