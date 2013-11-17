@@ -8,6 +8,7 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-connect": "*",
     "grunt-contrib-jshint": "*",
-    "grunt-contrib-jasmine": "*"
+    "grunt-contrib-jasmine": "*",
+    "requirejs": "*"    
   }
 }

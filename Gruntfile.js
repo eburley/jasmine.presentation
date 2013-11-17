@@ -1,6 +1,7 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  // use livereload so you can see data changes reflected in the slides
   var reloadPort = 32000;
 
   var jsCode = ['src/**.js'];

@@ -1,17 +1,7 @@
-var presentation = presentation || {};
+define(
+function(){
 
-
-/**
- * slideData is an array of slide data.
- *
- * each slide can have the following properties:
- * - title: the title of the slide
- * - big_title: an even larger title
- * - code: a block of code that will get formatted with syntax highlighting
- * - bullets: an array of strings that will be turned into bullet points.
- * @type {Array}
- */
-presentation.slideData = [
+return [
 {
     "big_title": "Testing JavaScript<br/> with Jasmine",
     "title": "Eric Burley",
@@ -64,7 +54,7 @@ presentation.slideData = [
     "bullets": [
         "incorporate testing into your work-flow",
         "invest in testing infrastructure",
-        "make sure it's part of your CI ",        
+        "make sure it's part of your CI ",
     ],
     "footer": "demo..."
 },
@@ -216,3 +206,4 @@ presentation.slideData = [
 "footer":"this presentation and associated code is up on github at <a href='https://github.com/eburley/jasmine.presentation'>https://github.com/eburley/jasmine.presentation</a>"
 }
 ];
+});

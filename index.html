@@ -3,56 +3,8 @@
   <title>Testing JavaScript with Jasmine</title>
   
   <link rel="stylesheet" type="text/css" href="slides.css">
-  <link rel="stylesheet" type="text/css" href="rainbow.themes/sunburst.css">  
-  <script type="text/javascript" src="lib/jquery-min.js"></script>
-  <script type="text/javascript" src="lib/rainbow-custom.min.js"></script>
-  <script type="text/javascript" src="slide_data.js"></script>
-  <script type="text/javascript" src="slides.js"></script>    
-  <script type="text/javascript">
-    $().ready(
-        function(){
-            var $slideDiv = $('#current_slide');
-            var slides = presentation.slides($slideDiv); 
-
-            slides.setContentFilter(function(slide){
-                if(slide.hasOwnProperty('code')) {                                  
-                    slide['code'] = '<pre class="code" data-language="javascript">' + slide['code'] + '</pre>';                      
-                }  
-            });
-
-            slides.onSlideChange(function(){
-                window.Rainbow.color();                
-            });
-
-            var slideNumber = slides.indexOfSlideHash(window.location.hash);
-            if ( slideNumber == -1) {
-                slides.show(0);  
-            } else {
-                slides.show(slideNumber);
-            }
-
-            $(document).on('click', function(){
-                slides.next();
-            });
-
-            $(document).on('keydown', function(k){                
-                switch(k.keyCode){
-                    case 37: // left arrow
-                        slides.previous();
-                        k.preventDefault();
-                        break;
-                    case 39: // right arrow
-                    case 32: // space bar
-                        slides.next();
-                        k.preventDefault();
-                        break;
-                }
-
-
-            });
-        }
-    );
-  </script>
+  <link rel="stylesheet" type="text/css" href="rainbow.themes/sunburst.css">    
+  <script type="text/javascript" src="node_modules/requirejs/require.js" data-main="src/app.js"></script>
 
 </head>
 <body>
