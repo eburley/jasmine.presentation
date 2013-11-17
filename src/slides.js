@@ -1,6 +1,7 @@
 define(['jquery'],
 
 function($){
+    "use strict";
 
     /**
      * Slides - a basic presentation engine
@@ -27,7 +28,7 @@ function($){
         $(window).on('hashchange', $.proxy(function() {
             if (this.currentSlide === -1 || window.location.hash !== getSlideHash(this.slideData[this.currentSlide], this.currentSlide)) {
                 var idx = this.indexOfSlideHash(window.location.hash);
-                if (idx != -1) {
+                if (idx !== -1) {
                     this.show(idx);
                 }
             }
@@ -152,7 +153,7 @@ function($){
      * @param  {number} interval - the time in milliseconds between slide changes.     
      */
     Slides.prototype.playback = function(interval) {
-        if ( this.currentSlide == -1 ) {
+        if ( this.currentSlide === -1 ) {
             this.show(0);
         }
         window.setInterval($.proxy(this.next,this),interval);
@@ -165,7 +166,7 @@ function($){
      *                               slide changes.     
      */
     Slides.prototype.onSlideChange = function(callback) {
-        this.slideChangeCallback = callback || noop;
+        this.slideChangeCallback = callback || this.noop;
     };
 
     /**
@@ -175,7 +176,7 @@ function($){
      *                               slide changes.     
      */
     Slides.prototype.beforeSlideChange = function(callback) {
-        this.beforeSlideChangeCallback = callback || noop;
+        this.beforeSlideChangeCallback = callback || this.noop;
     };
 
 
@@ -186,7 +187,7 @@ function($){
      * @param {Function} filter - the filter function to call
      */
     Slides.prototype.setContentFilter = function(filter) {
-        this.slideContentFilter = filter || noop;
+        this.slideContentFilter = filter || this.noop;
     };
 
     /**

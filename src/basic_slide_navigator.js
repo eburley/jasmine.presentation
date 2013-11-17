@@ -9,6 +9,7 @@ function($){
      * @param  {Slides} presentation  The slide engine.     
      */
     return function(presentation) {
+        "use strict";
 
         $(document).on('click', function() {
                 presentation.next();
@@ -16,16 +17,16 @@ function($){
 
         $(document).on('keydown', function(k) {
 
-            switch(k.which){
-                case 37: // left arrow
-                    presentation.previous();
-                    k.preventDefault();
-                    break;
-                case 39: // right arrow
-                case 32: // space bar
-                    presentation.next();
-                    k.preventDefault();
-                    break;
+            switch(k.which) {
+            case 37: // left arrow
+                presentation.previous();
+                k.preventDefault();
+                break;
+            case 39: // right arrow
+            case 32: // space bar
+                presentation.next();
+                k.preventDefault();
+                break;
             }
         });
 

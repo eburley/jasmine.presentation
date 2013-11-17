@@ -8,6 +8,7 @@ function(rainbow){
      * @param  {Slides} presentation  a presentation engine     
      */
     return function(presentation) {
+        "use strict";
 
         // subscribe to slide changes.
         presentation.onSlideChange(function() {

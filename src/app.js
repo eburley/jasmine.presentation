@@ -18,7 +18,8 @@ require([
     'src/slides',
     'data/slide_data',
     'src/slide_syntax_highlights',
-    'src/basic_slide_navigator'],
+    'src/basic_slide_navigator'
+],
 
 /**
  * Main application.
@@ -35,6 +36,8 @@ require([
 
  */
 function($, Slides, slideData, slideSyntaxHighlighter, basicSlideNavigator) {
+    "use strict";
+
     $().ready( function(){
         
         // get the div.
@@ -51,7 +54,7 @@ function($, Slides, slideData, slideSyntaxHighlighter, basicSlideNavigator) {
 
         // show the slide.
         var slideNumber = presentation.indexOfSlideHash(window.location.hash);
-        if ( slideNumber == -1) {
+        if ( slideNumber === -1) {
             presentation.show(0);
         } else {
             presentation.show(slideNumber);
