@@ -4,10 +4,74 @@ function($){
     "use strict";
 
     /**
-     * Slides - a basic presentation engine
+     * Slides - a basic presentation engine created as an excuse to write
+     * unit tests.
+     * 
      * @constructor
      * @param {jQuery} $displayArea - a jquery object to display into
      * @param {array} slideData - an array of slide data.
+     *
+     * @description Configure a slide show quickly and easily through the
+     * power of JSON.  To get started, create a DOM element like so:
+     *
+     * <div id="mySlideShow"></div>
+     *
+     * Then define your slides through the power of JSON (more about formating later):
+     *
+     * var mySlideData = [{
+     *   "big_title": "Hello!",
+     *   "title": "World"
+     *   },
+     *   {           
+     *       "bullets": [
+     *           "Goodbye,",
+     *           "World"]
+     *   }];
+     *
+     * And get things going:
+     *
+     * First get the DOM object:
+     * var myDisplayArea = $#mySlideShow");
+     *
+     * Then create the show:
+     * var slideShow = new Slides(myDisplayArea, mySlideData);
+     *
+     * That's it!  You've created your first slide show.  As a next step let's go
+     * over how we define what's on each slide:
+     *
+     * Philosophy:
+     * Each slide is an object, and each property on that object corresponds to 
+     * content that you want to display on a slide.  The default slide styles include
+     * support for titles, bullet points, footers, etc.  These styles aren't magic,
+     * since the slide engine allows you to define any element you want.  
+     * 
+     * How the slides are built:
+     * Elements in the slide output are turned into html using a very simple algorithm:
+     * - If the value of the elment is a string property then a div is added to the slide
+     * with a class set to the name of the property, and the contents of the div
+     * set to the value of the property.
+     * - If the value of the element is an object or an array, then an unordered 
+     * list (ul) is added to the slide, with a list item (li) for each property or 
+     * element in the object.  The class of the ul is set to the name of the property
+     *
+     * Supporting another style on a slide:
+     * Suppose you'd like to add a logo to the bottom right hand corner of a slide.
+     * You would add the following to your css:
+     * 
+     * .logo {
+     *     position: absolute; <-- assuming your parent is relative or abs positioned
+     *     left: 900px;
+     *     top: 580px;
+     *     background-image: url('img/logo.png');    
+     * }
+     *
+     * Then in your slide definitions you would add a logo property like so:
+     *
+     * {
+     *     "title": "Hello",
+     *     "logo": "&nbsp;"
+     * }
+     * 
      */
     function Slides($displayArea, slideData) {
         
