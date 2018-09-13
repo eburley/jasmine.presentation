@@ -25,7 +25,7 @@ controls:
 
 dependencies:
 =================
-- [jasmine.js](http://pivotal.github.com/jasmine/)
+- [jasmine.js](https://jasmine.github.io/)
 - [grunt.js](https://github.com/gruntjs/grunt)
 - [grunt-contrib-watch] (https://github.com/gruntjs/grunt-contrib-watch)
 - [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect)
